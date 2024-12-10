@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\auth\CommonController;
+use App\Http\Controllers\DriverController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -16,6 +17,8 @@ Route::prefix('v1')->group(function () {
         //driver routes
         Route::prefix('driver')->group(function () {
             // add driver side routes
+            Route::post('add-driver', [DriverController::class, 'addDriver']);
+            Route::post('add-vehicle', [DriverController::class, 'addVehicle']);
         });
         // admin routes
         Route::prefix('admin')->group(function () {

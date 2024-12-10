@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Driver;
 use Illuminate\Http\Request;
 
 use App\Models\User;
@@ -37,6 +38,11 @@ class CommonController extends Controller
         $input['image'] = time() . '.' . $request->image->getClientOriginalExtension();
         $request->image->move(public_path('images'), $input['image']);
         $user = User::create($input);
+        if ($request->role == 'driver') {
+            $driver = new Driver();
+            $driver->user_id = $user->id;
+            $driver->save();
+        }
 
 
         $token =  $user->createToken('MyApp')->plainTextToken;

@@ -2,6 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//visitor routes
+require __DIR__ . '/web/visitor.php';
+require __DIR__ . '/web/admin.php';

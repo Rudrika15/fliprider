@@ -38,10 +38,15 @@ class CommonController extends Controller
         $input['image'] = time() . '.' . $request->image->getClientOriginalExtension();
         $request->image->move(public_path('images'), $input['image']);
         $user = User::create($input);
+
+        Auth::login($user);
         if ($request->role == 'driver') {
             $driver = new Driver();
             $driver->user_id = $user->id;
             $driver->save();
+            // return $request;
+            // send the  return $this->addVehicle($request); like this 
+            return (new \App\Http\Controllers\DriverController)->addDriver($request);
         }
 
 

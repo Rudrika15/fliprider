@@ -16,8 +16,11 @@ class UserController extends Controller
             if ($request->has('search')) {
                 $query->where('name', 'like', '%' . $request->search . '%');
             }
-            if ($request->has('orderBy') && $request->has('orderType')) {
-                $query->orderBy($request->orderBy, $request->orderType ?? 'desc');
+            if ($request->has('start_date') && $request->has('end_date')) {
+                $query->whereBetween('created_at', [$request->start_date, $request->end_date]);
+            }
+            if ($request->has('orderBy') || $request->has('orderType')) {
+                $query->orderBy($request->orderBy ?? 'id', $request->orderType ?? 'desc');
             }
             if ($request->has('paginate')) {
                 $users = $query->paginate($request->paginate ?? 10);

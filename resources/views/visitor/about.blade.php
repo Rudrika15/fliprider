@@ -1,4 +1,4 @@
- @extends('layouts.index')
+ @extends('visitor.layouts.index')
  @section('content')
      <!-- About Section -->
      <section id="about" class="about section p-5">

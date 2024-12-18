@@ -1,4 +1,4 @@
-@extends('layouts.index')
+@extends('visitor.layouts.index')
 
 @section('content')
     <section id="contact" class="contact section">

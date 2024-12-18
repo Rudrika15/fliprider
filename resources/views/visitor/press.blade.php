@@ -1,4 +1,4 @@
-@extends('layouts.index')
+@extends('visitor.layouts.index')
 
 @section('content')
     <!-- Press Section -->
@@ -11,5 +11,4 @@
         </div>
     </section>
     <!-- /Press Section -->
-
 @endsection

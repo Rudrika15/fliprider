@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\Util;
 use App\Models\Driver;
 use App\Models\Vehicle;
 use Illuminate\Http\Request;
@@ -10,9 +11,11 @@ use Illuminate\Support\Facades\Validator;
 
 class DriverController extends Controller
 {
+
     //
     public function addDriver(Request $request)
     {
+
         // Validate request inputs
         $validator = Validator::make($request->all(), [
             'license_number' => 'required|string',
@@ -22,20 +25,21 @@ class DriverController extends Controller
 
         // Return validation errors if validation fails
         if ($validator->fails()) {
-            return response()->json([
-                'status' => false,
-                'message' => $validator->errors()->first()
-            ], 400);
+            // return response()->json([
+            //     'status' => false,
+            //     'message' => $validator->errors()->first()
+            // ], 400);
+            return Util::getErrorMessage($validator->errors()->first());
         }
 
         try {
             // Get the authenticated user ID
-            $user_id = Auth::id();
-
+            $user_id = Auth::user()->id;
             // Create a new Driver instance
             $driver = new Driver();
             $driver->user_id = $user_id;
             $driver->license_number = $request->license_number;
+
 
             // Handle license image upload
             if ($request->hasFile('license_image')) {
@@ -50,20 +54,14 @@ class DriverController extends Controller
 
             // Save the driver to the database
             $driver->save();
+            // send the flow to teh add vehicle
+            return $this->addVehicle($request);
 
             // Return success response
-            return response()->json([
-                'status' => true,
-                'message' => 'Driver added successfully',
-                'data' => $driver
-            ]);
+            // return Util::postSuccessMessage($driver, 'Driver added successfully');
         } catch (\Exception $e) {
             // Handle any unexpected errors
-            return response()->json([
-                'status' => false,
-                'message' => 'An error occurred while adding the driver.',
-                'error' => $e->getMessage()
-            ], 500);
+            return Util::serverErrorMessage($e->getMessage() . ' ' . 'An error occurred while adding the driver.');
         }
     }
 
@@ -85,15 +83,13 @@ class DriverController extends Controller
             'rc_expiry_date' => 'required|date',
         ]);
         if ($validator->fails()) {
-            return response()->json([
-                'status' => false,
-                'message' => $validator->errors()->first()
-            ], 400);
+            return Util::getErrorMessage($validator->errors()->first());
         }
 
         try {
             // Get authenticated driver ID
-            $driver_id = Auth::id();
+            $driver_id = Auth::user()->driver->id;
+
 
             // Create a new vehicle instance
             $vehicle = new Vehicle();
@@ -139,17 +135,9 @@ class DriverController extends Controller
             // Save the vehicle to the database
             $vehicle->save();
 
-            return response()->json([
-                'status' => true,
-                'message' => 'Vehicle Added Successfully',
-                'data' => $vehicle
-            ]);
+            return Util::postSuccessMessage($vehicle, 'Vehicle Added Successfully');
         } catch (\Exception $e) {
-            return response()->json([
-                'status' => false,
-                'message' => 'An error occurred while adding the vehicle.',
-                'error' => $e->getMessage()
-            ], 500);
+            return Util::serverErrorMessage('An error occurred while adding the vehicle.');
         }
     }
 }

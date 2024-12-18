@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('drivers', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->string('license_number')->unique();
+            $table->string('license_number')->unique()->nullable();
             $table->decimal('rating', 3, 2)->nullable();
             $table->enum('availability_status', ['available', 'busy', 'offline'])
                 ->default('offline');

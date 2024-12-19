@@ -11,29 +11,30 @@
     <title>Home - Ninja Admin Template</title>
 
     <!-- Main Styles -->
-    <link rel="stylesheet" href="admin/assets/styles/style.min.css">
+    <link rel="stylesheet" href="{{ asset('admin/assets/styles/style.min.css') }}">
 
     <!-- mCustomScrollbar -->
-    <link rel="stylesheet" href="admin/assets/plugin/mCustomScrollbar/jquery.mCustomScrollbar.min.css">
+    <link rel="stylesheet" href="{{ asset('admin/assets/plugin/mCustomScrollbar/jquery.mCustomScrollbar.min.css') }}">
 
     <!-- Waves Effect -->
-    <link rel="stylesheet" href="admin/assets/plugin/waves/waves.min.css">
+    <link rel="stylesheet" href="{{ asset('admin/assets/plugin/waves/waves.min.css') }}">
 
     <!-- Sweet Alert -->
-    <link rel="stylesheet" href="admin/assets/plugin/sweet-alert/sweetalert.css">
+    <link rel="stylesheet" href="{{ asset('admin/assets/plugin/sweet-alert/sweetalert.css') }}">
+    {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css"> --}}
 
     <!-- Percent Circle -->
-    <link rel="stylesheet" href="admin/assets/plugin/percircle/css/percircle.css">
+    <link rel="stylesheet" href="{{ asset('admin/assets/plugin/percircle/css/percircle.css') }}">
 
     <!-- Chartist Chart -->
-    <link rel="stylesheet" href="admin/assets/plugin/chart/chartist/chartist.min.css">
+    <link rel="stylesheet" href="{{ asset('admin/assets/plugin/chart/chartist/chartist.min.css') }}">
 
     <!-- FullCalendar -->
-    <link rel="stylesheet" href="admin/assets/plugin/fullcalendar/fullcalendar.min.css">
-    <link rel="stylesheet" href="admin/assets/plugin/fullcalendar/fullcalendar.print.css" media='print'>
+    <link rel="stylesheet" href="{{ asset('admin/assets/plugin/fullcalendar/fullcalendar.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('admin/assets/plugin/fullcalendar/fullcalendar.print.css') }}" media='print'>
 
     <!-- Dark Themes -->
-    <link rel="stylesheet" href="admin/assets/styles/style-dark.min.css">
+    <link rel="stylesheet" href="{{ asset('admin/assets/styles/style-dark.min.css') }}">
 </head>
 
 <body>
@@ -508,32 +509,69 @@
     <!--
  ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="admin/assets/scripts/jquery.min.js"></script>
-    <script src="admin/assets/scripts/modernizr.min.js"></script>
-    <script src="admin/assets/plugin/bootstrap/js/bootstrap.min.js"></script>
-    <script src="admin/assets/plugin/mCustomScrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
-    <script src="admin/assets/plugin/nprogress/nprogress.js"></script>
-    <script src="admin/assets/plugin/sweet-alert/sweetalert.min.js"></script>
-    <script src="admin/assets/plugin/waves/waves.min.js"></script>
+    <script src="{{ asset('admin/assets/scripts/jquery.min.js') }}"></script>
+    {{-- <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script> --}}
+
+    <script src="{{ asset('admin/assets/scripts/modernizr.min.js') }}"></script>
+    <script src="{{ asset('admin/assets/plugin/bootstrap/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('admin/assets/plugin/mCustomScrollbar/jquery.mCustomScrollbar.concat.min.js') }}"></script>
+    <script src="{{ asset('admin/assets/plugin/nprogress/nprogress.js') }}"></script>
+    <script src="{{ asset('admin/assets/plugin/sweet-alert/sweetalert.min.js') }}"></script>
+    {{-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> --}}
+
+    <script src="{{ asset('admin/assets/plugin/waves/waves.min.js') }}"></script>
     <!-- Full Screen Plugin -->
-    <script src="admin/assets/plugin/fullscreen/jquery.fullscreen-min.js"></script>
+    <script src="{{ asset('admin/assets/plugin/fullscreen/jquery.fullscreen-min.js') }}"></script>
 
     <!-- Percent Circle -->
-    <script src="admin/assets/plugin/percircle/js/percircle.js"></script>
+    <script src="{{ asset('admin/assets/plugin/percircle/js/percircle.js') }}"></script>
 
     <!-- Google Chart -->
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js')}}"></script>
 
     <!-- Chartist Chart -->
-    <script src="admin/assets/plugin/chart/chartist/chartist.min.js"></script>
-    <script src="admin/assets/scripts/chart.chartist.init.min.js"></script>
+    <script src="{{ asset('admin/assets/plugin/chart/chartist/chartist.min.js') }}"></script>
+    <script src="{{ asset('admin/assets/scripts/chart.chartist.init.min.js') }}"></script>
 
     <!-- FullCalendar -->
-    <script src="admin/assets/plugin/moment/moment.js"></script>
-    <script src="admin/assets/plugin/fullcalendar/fullcalendar.min.js"></script>
-    <script src="admin/assets/scripts/fullcalendar.init.js"></script>
+    <script src="{{ asset('admin/assets/plugin/moment/moment.js') }}"></script>
+    <script src="{{ asset('admin/assets/plugin/fullcalendar/fullcalendar.min.js') }}"></script>
+    <script src="{{ asset('admin/assets/scripts/fullcalendar.init.js') }}"></script>
 
-    <script src="admin/assets/scripts/main.min.js"></script>
+    <script src="{{ asset('admin/assets/scripts/main.min.js') }}"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('form[role="delete"]').forEach(function(form) {
+                form.addEventListener('submit', function(event) {
+                    event.preventDefault();
+                    swal({
+                        title: "Delete?",
+                        text: "Are you sure you want to delete this item?",
+                        type: "warning",
+                        showCancelButton: true,
+                        confirmButtonColor: "#DD6B55",
+                        confirmButtonText: "Yes, delete it!",
+                        cancelButtonText: "No, cancel!",
+                        closeOnConfirm: false,
+                        closeOnCancel: true,
+                        confirmButtonColor: '#f60e0e',
+                    }, function(isConfirm) {
+                        if (isConfirm) {
+                            form.submit(); // Submit the form after confirmation
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+    {{-- <script>
+        Swal.fire({
+            title: 'SweetAlert2 Test',
+            text: 'If you see this, SweetAlert2 is working!',
+            icon: 'success'
+        });
+    </script> --}}
+
 </body>
 
 </html>

@@ -15,12 +15,6 @@
         </div>
     </div>
 
-    @session('success')
-        <div class="alert alert-success" role="alert">
-            {{ $value }}
-        </div>
-    @endsession
-
     <div class="table table-responsive">
         <table class="table table-bordered">
 

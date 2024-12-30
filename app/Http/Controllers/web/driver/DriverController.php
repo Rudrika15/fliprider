@@ -14,17 +14,33 @@ class DriverController extends Controller
     public function fare(Request $request)
     {
         $request->validate([
+            'vehicle_type' => 'required',
             'distance' => 'required|numeric|min:0',
             'vehicle_type' => 'required',
         ]);
 
-        // Fare calculation parameters
-        $perKmRate = 10; // Rate per kilometer
+        $vehicleTypes = [
+            'car' => [
+                'rate' => 20,
+                'extra_distance_rate' => 10
+            ],
+            'bike' => [
+                'rate' => 15,
+                'extra_distance_rate' => 8
+            ],
+            'rikshaw' => [
+                'rate' => 20,
+                'extra_distance_rate' => 5
+            ]
+        ];
+
+        $perKmRate = $vehicleTypes[$request->vehicle_type]['rate']; // Rate per kilometer
         $baseFare = $perKmRate * $request->distance; // Base fare in your currency
+        $vehicleTypes = $vehicleTypes[$request->vehicle_type];
 
         if ($request->extra_distance) {
             $extraDistance = $request->extra_distance;
-            $extraFare = $perKmRate * $extraDistance;
+            $extraFare = $extraDistance * $vehicleTypes['extra_distance_rate'];
             $baseFare += $extraFare;
         }
 

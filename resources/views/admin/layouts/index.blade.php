@@ -34,7 +34,15 @@
     <link rel="stylesheet" href="{{ asset('admin/assets/plugin/fullcalendar/fullcalendar.print.css') }}" media='print'>
 
     <!-- Dark Themes -->
+
     <link rel="stylesheet" href="{{ asset('admin/assets/styles/style-dark.min.css') }}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet" />
+
+    <style>
+        .toast {
+            opacity: 1 !important;
+        }
+    </style>
 </head>
 
 <body>
@@ -511,6 +519,7 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="{{ asset('admin/assets/scripts/jquery.min.js') }}"></script>
     {{-- <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script> --}}
+    <script load="first" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 
     <script src="{{ asset('admin/assets/scripts/modernizr.min.js') }}"></script>
     <script src="{{ asset('admin/assets/plugin/bootstrap/js/bootstrap.min.js') }}"></script>
@@ -571,6 +580,33 @@
             icon: 'success'
         });
     </script> --}}
+
+    <script>
+        toastr.options = {
+            "closeButton": true,
+            "debug": false,
+            "newestOnTop": false,
+            "progressBar": false,
+            "positionClass": "toast-top-right",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut",
+            "opacity": 1
+        };
+
+        @if (session('success'))
+            toastr.success("{{ session('success') }}");
+        @elseif (session('error'))
+            toastr.error("{{ session('error') }}");
+        @endif
+    </script>
 
 </body>
 

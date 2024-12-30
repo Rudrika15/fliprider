@@ -15,12 +15,6 @@
         </div>
     </div>
 
-    @session('success')
-        <div class="alert alert-success" role="alert">
-            {{ $value }}
-        </div>
-    @endsession
-
     <table class="table table-bordered">
         <tr>
             <th>Name</th>
@@ -60,5 +54,4 @@
     </table>
 
     {!! $roles->links() !!}
-
 @endsection

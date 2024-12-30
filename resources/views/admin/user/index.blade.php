@@ -13,12 +13,6 @@
         </div>
     </div>
 
-    @session('success')
-        <div class="alert alert-success" role="alert">
-            {{ $value }}
-        </div>
-    @endsession
-
     <table class="table table-bordered">
         <tr>
             {{-- <th>No</th> --}}
@@ -48,7 +42,6 @@
                         role="delete">
                         @csrf
                         @method('DELETE')
-
                         <button type="submit" class="btn btn-danger btn-xs"><i class="fa  fa-trash"></i>
                             Delete</button>
                     </form>
@@ -58,6 +51,4 @@
     </table>
 
     {!! $data->links() !!}
-
-
 @endsection

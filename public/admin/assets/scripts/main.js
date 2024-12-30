@@ -144,6 +144,7 @@
         logout: function () {
             $(".js__logout").on("click", function (event) {
                 event.preventDefault();
+
                 swal(
                     {
                         title: "Logout?",
@@ -152,7 +153,7 @@
                         showCancelButton: true,
                         confirmButtonColor: "#DD6B55",
                         confirmButtonText: "Yes, I'm out!",
-                        cancelButtonText: "No, stay plx!",
+                        cancelButtonText: "No, stay please!",
                         closeOnConfirm: false,
                         closeOnCancel: true,
                         confirmButtonColor: "#f60e0e",
@@ -162,8 +163,24 @@
                             swal({
                                 title: "Logout success",
                                 text: "See you later!",
-                                type: "success",
-                                confirmButtonColor: "#304ffe",
+                                icon: "success",
+                                buttons: {
+                                    confirm: {
+                                        text: "OK",
+                                        value: true,
+                                        visible: true,
+                                        className: "btn-success",
+                                        closeModal: true,
+                                    },
+                                },
+                            }).then(function () {
+                                const logoutForm =
+                                    document.getElementById("logout-form");
+                                if (logoutForm) {
+                                    logoutForm.submit();
+                                } else {
+                                    console.error("Logout form not found.");
+                                }
                             });
                         } else {
                         }

@@ -41,16 +41,35 @@
                          <span>Dashboard</span>
                      </a>
                  </li>
-                 <li @if (Route::currentRouteName() == 'users.index') class="current" @endif>
-                     <a class="waves-effect" href="{{ route('users.index') }}">
+                 @if (Auth::user()->hasRole('admin'))
+                     <li @if (Route::currentRouteName() == 'users.index') class="current" @endif>
+                         <a class="waves-effect" href="{{ route('users.index') }}">
+                             <i class="menu-icon fa fa-users"></i>
+                             <span>Users</span>
+                         </a>
+                     </li>
+                 @endif
+                 @if (Auth::user()->hasRole('admin'))
+                     <li @if (Route::currentRouteName() == 'roles.index') class="current" @endif>
+                         <a class="waves-effect" href="{{ route('roles.index') }}">
+                             <i class="menu-icon fa fa-users"></i>
+                             <span>Roles</span>
+                         </a>
+                     </li>
+                 @endif
+                 @if (Auth::user()->hasRole('admin'))
+                     <li @if (Route::currentRouteName() == 'drivers.index') class="current" @endif>
+                         <a class="waves-effect" href="{{ route('drivers.index') }}">
+                             <i class="menu-icon fa fa-users"></i>
+                             <span>Drivers</span>
+                         </a>
+                     </li>
+                 @endif
+                     
+                 <li @if (Route::currentRouteName() == 'request') class="current" @endif>
+                     <a class="waves-effect" href="{{ route('request') }}">
                          <i class="menu-icon fa fa-users"></i>
-                         <span>Users</span>
-                     </a>
-                 </li>
-                 <li @if (Route::currentRouteName() == 'roles.index') class="current" @endif>
-                     <a class="waves-effect" href="{{ route('roles.index') }}">
-                         <i class="menu-icon fa fa-users"></i>
-                         <span>Roles</span>
+                         <span>Fare Calculator</span>
                      </a>
                  </li>
              </ul>

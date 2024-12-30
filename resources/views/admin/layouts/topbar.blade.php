@@ -40,6 +40,9 @@
             <a href="#" class="ico-item pulse"><span class="ico-item fa fa-bell notice-alarm js__toggle_open"
                     data-target="#notification-popup"></span></a>
             <a href="#" class="ico-item fa fa-power-off js__logout"></a>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                @csrf
+            </form>
         </div>
         <!-- /.pull-right -->
     </div>

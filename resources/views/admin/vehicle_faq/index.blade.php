@@ -12,33 +12,34 @@
             </div>
         </div>
     </div>
-
-    <table class="table table-bordered">
-        <tr>
-            <th>#</th>
-            <th>Vehicle Type</th>
-            <th>Title</th>
-            <th>Description</th>
-            <th width="280px">Action</th>
-        </tr>
-        @foreach ($vehicle_faqs as $vehicle_faq)
+    <div class="table-responsive">
+        <table class="table table-bordered">
             <tr>
-                <td>{{ $loop->iteration }}</td>
-                <td>{{ $vehicle_faq->masterRate->vehicle_name }}</td>
-                <td>{{ $vehicle_faq->title }}</td>
-                <td>{{ $vehicle_faq->description }}</td>
-
-                <td style="display: flex; gap: 5px">
-                    <a class="btn btn-primary btn-sm" href="{{ route('vehicles.faq.edit', $vehicle_faq->id) }}"><i
-                            class="fa fa-edit"></i> Edit</a>
-                    <form action="{{ route('vehicles.faq.destroy', $vehicle_faq->id) }}" method="POST"
-                        class="d-inline-block" role="delete">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Delete</button>
-                    </form>
-                </td>
+                <th>#</th>
+                <th>Vehicle Type</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th width="280px">Action</th>
             </tr>
-        @endforeach
-    </table>
-@endsection
+            @foreach ($vehicle_faqs as $vehicle_faq)
+                <tr>
+                    <td>{{ $loop->iteration }}</td>
+                    <td>{{ $vehicle_faq->masterRate->vehicle_name }}</td>
+                    <td>{{ $vehicle_faq->title }}</td>
+                    <td>{{ $vehicle_faq->description }}</td>
+
+                    <td style="display: flex; gap: 5px">
+                        <a class="btn btn-primary btn-sm" href="{{ route('vehicles.faq.edit', $vehicle_faq->id) }}"><i
+                                class="fa fa-edit"></i> Edit</a>
+                        <form action="{{ route('vehicles.faq.destroy', $vehicle_faq->id) }}" method="POST"
+                            class="d-inline-block" role="delete">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            @endforeach
+        </table>
+    </div>
+    @endsection

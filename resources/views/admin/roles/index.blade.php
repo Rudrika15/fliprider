@@ -14,44 +14,45 @@
             </div>
         </div>
     </div>
-
-    <table class="table table-bordered">
-        <tr>
-            <th>Name</th>
-            <th width="280px">Action</th>
-        </tr>
-        @foreach ($roles as $key => $role)
+    <div class="table-responsive">
+        <table class="table table-bordered">
             <tr>
-
-                <td>{{ $role->name }}</td>
-                <td>
-                    <a class="btn btn-info btn-xs" href="{{ route('roles.show', $role->id) }}">
-                        <i class="fa fa-list"></i>
-                        Show
-                    </a>
-                    @can('role-edit')
-                        <a class="btn btn-primary btn-xs" href="{{ route('roles.edit', $role->id) }}">
-                            <i class="fa fa-pencil-square-o"></i>
-                            Edit
-                        </a>
-                    @endcan
-
-                    @can('role-delete')
-                        <form method="POST" action="{{ route('roles.destroy', $role->id) }}" style="display:inline"
-                            role="delete">
-                            @csrf
-                            @method('DELETE')
-
-                            <button type="submit" class="btn btn-danger btn-xs">
-                                <i class="fa fa-trash"></i>
-                                Delete
-                            </button>
-                        </form>
-                    @endcan
-                </td>
+                <th>Name</th>
+                <th width="280px">Action</th>
             </tr>
-        @endforeach
-    </table>
+            @foreach ($roles as $key => $role)
+                <tr>
 
+                    <td>{{ $role->name }}</td>
+                    <td>
+                        <a class="btn btn-info btn-xs" href="{{ route('roles.show', $role->id) }}">
+                            <i class="fa fa-list"></i>
+                            Show
+                        </a>
+                        @can('role-edit')
+                            <a class="btn btn-primary btn-xs" href="{{ route('roles.edit', $role->id) }}">
+                                <i class="fa fa-pencil-square-o"></i>
+                                Edit
+                            </a>
+                        @endcan
+
+                        @can('role-delete')
+                            <form method="POST" action="{{ route('roles.destroy', $role->id) }}" style="display:inline"
+                                role="delete">
+                                @csrf
+                                @method('DELETE')
+
+                                <button type="submit" class="btn btn-danger btn-xs">
+                                    <i class="fa fa-trash"></i>
+                                    Delete
+                                </button>
+                            </form>
+                        @endcan
+                    </td>
+                </tr>
+            @endforeach
+        </table>
+
+    </div>
     {!! $roles->links() !!}
 @endsection

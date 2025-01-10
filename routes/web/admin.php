@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AdPlacementController;
+use App\Http\Controllers\AdvertisementController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\ProductController;
@@ -55,4 +57,20 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('vehicle-rules/edit/{id}', [VehicleRuleController::class, 'edit'])->name('vehicles.rule.edit');
     Route::post('vehicle-rules/update/{id}', [VehicleRuleController::class, 'update'])->name('vehicles.rule.update');
     Route::delete('vehicle-rules/destroy/{id}', [VehicleRuleController::class, 'destroy'])->name('vehicles.rule.destroy');
+
+    //Advertisement routes
+    Route::get('advertisement', [AdvertisementController::class, 'index'])->name('advertisement.index');
+    Route::get('advertisement/create', [AdvertisementController::class, 'create'])->name('advertisement.create');
+    Route::post('advertisement/store', [AdvertisementController::class, 'store'])->name('advertisement.store');
+    Route::get('advertisement/edit/{id}', [AdvertisementController::class, 'edit'])->name('advertisement.edit');
+    Route::post('advertisement/update/{id}', [AdvertisementController::class, 'update'])->name('advertisement.update');
+    Route::delete('advertisement/destroy/{id}', [AdvertisementController::class, 'destroy'])->name('advertisement.destroy');
+
+    //Advertisement placement routes
+    Route::get('advertisement-placement', [AdPlacementController::class, 'index'])->name('advertisement.placement.index');
+    Route::get('advertisement-placement/create', [AdPlacementController::class, 'create'])->name('advertisement.placement.create');
+    Route::post('advertisement-placement/store', [AdPlacementController::class, 'store'])->name('advertisement.placement.store');
+    Route::get('advertisement-placement/edit/{id}', [AdPlacementController::class, 'edit'])->name('advertisement.placement.edit');
+    Route::post('advertisement-placement/update/{id}', [AdPlacementController::class, 'update'])->name('advertisement.placement.update');
+    Route::delete('advertisement-placement/destroy/{id}', [AdPlacementController::class, 'destroy'])->name('advertisement.placement.destroy');
 });

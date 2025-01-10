@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\api\UserController;
 use App\Http\Controllers\auth\CommonController;
-use App\Http\Controllers\DriverController;
+use App\Http\Controllers\api\DriverController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 

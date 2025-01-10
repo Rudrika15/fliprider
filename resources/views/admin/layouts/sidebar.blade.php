@@ -66,30 +66,56 @@
                      </li>
                  @endif
 
-                 <li @if (Route::currentRouteName() == 'rates.index') class="current" @endif>
-                     <a class="waves-effect" href="{{ route('rates.index') }}">
-                         <i class="menu-icon fa fa-money"></i>
-                         <span>Rates</span>
-                     </a>
+                 <li>
+                     <a class="waves-effect parent-item js__control" href="#"><i
+                             class="menu-icon fa fa-car"></i><span>Vehicles</span><span
+                             class="menu-arrow fa fa-angle-down"></span></a>
+                     <ul class="sub-menu js__content">
+                         <li><a href="{{ route('vehicles.index') }}"> Vehicles</a></li>
+                         <li><a href="{{ route('rates.index') }}">Rates</a></li>
+                         <li><a href="{{ route('vehicles.faq.index') }}">Vehicle's Faqs</a></li>
+                         <li><a href="{{ route('vehicles.rule.index') }}">Vehicle's Rules</a></li>
+                     </ul>
+                     <!-- /.sub-menu js__content -->
                  </li>
 
-                 <li @if (Route::currentRouteName() == 'vehicles.index') class="current" @endif>
+                 {{-- <li @if (Route::currentRouteName() == 'vehicles.index') class="current" @endif>
                      <a class="waves-effect" href="{{ route('vehicles.index') }}">
                          <i class="menu-icon fa fa-car"></i>
                          <span>Vehicles</span>
                      </a>
-                 </li>
+                 </li> --}}
 
-                 <li @if (Route::currentRouteName() == 'vehicles.faq.index') class="current" @endif>
+                 {{-- <li @if (Route::currentRouteName() == 'rates.index') class="current" @endif>
+                     <a class="waves-effect" href="{{ route('rates.index') }}">
+                         <i class="menu-icon fa fa-money"></i>
+                         <span>Rates</span>
+                     </a>
+                 </li> --}}
+
+                 {{-- <li @if (Route::currentRouteName() == 'vehicles.faq.index') class="current" @endif>
                      <a class="waves-effect" href="{{ route('vehicles.faq.index') }}">
                          <i class="menu-icon fa fa-question"></i>
                          <span>Vehicle's Faqs</span>
                      </a>
-                 </li>
-                 <li @if (Route::currentRouteName() == 'vehicles.rule.index') class="current" @endif>
+                 </li> --}}
+
+                 {{-- <li @if (Route::currentRouteName() == 'vehicles.rule.index') class="current" @endif>
                      <a class="waves-effect" href="{{ route('vehicles.rule.index') }}">
                          <i class="menu-icon fa fa-book"></i>
                          <span>Vehicle's Rules</span>
+                     </a>
+                 </li> --}}
+                 <li @if (Route::currentRouteName() == 'advertisement.index') class="current" @endif>
+                     <a class="waves-effect" href="{{ route('advertisement.index') }}">
+                         <i class="menu-icon fa fa-newspaper-o"></i>
+                         <span>Advertisement</span>
+                     </a>
+                 </li>
+                 <li @if (Route::currentRouteName() == 'advertisement.placement.index') class="current" @endif>
+                     <a class="waves-effect" href="{{ route('advertisement.placement.index') }}">
+                         <i class="menu-icon fa fa-newspaper-o"></i>
+                         <span>Advertisement Placement</span>
                      </a>
                  </li>
                  {{-- <li @if (Route::currentRouteName() == 'request') class="current" @endif>

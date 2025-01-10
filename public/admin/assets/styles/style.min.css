@@ -4863,3 +4863,15 @@ textarea.form-control {
 .sweet-alert.visible .sa-icon.sa-error .sa-line {
     background: #ea4335;
 }
+
+/* responsive top bar */
+
+@media (max-width: 499px) {
+    .pull-right a span {
+        display: none !important;
+    }
+    .pull-right a {
+        margin-bottom: 10px;
+        margin-right: 0 !important;
+    }
+}

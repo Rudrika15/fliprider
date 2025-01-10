@@ -4,31 +4,31 @@
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
-                <h2>Master Rates Management</h2>
+                <h2>Ad Placement</h2>
             </div>
             <div class="pull-right">
-                <a class="btn btn-success mb-2" href="{{ route('vehicles.create') }}"><i class="fa fa-plus"></i> Create New
-                    Rates</a>
+                <a class="btn btn-success" href="{{ route('advertisement.placement.create') }}"> Create New Ad Placement</a>
             </div>
         </div>
     </div>
     <div class="table-responsive">
         <table class="table table-bordered">
             <tr>
-                <th>#</th>
-                <th>Vehicle Name</th>
-                <th width="280px">Action</th>
+                <th>No</th>
+                <th>Placement</th>
+                <th>Action</th>
             </tr>
-            @foreach ($vehicles as $vehicle)
+            @foreach ($ad_placements as $ad_placement)
                 <tr>
                     <td>{{ $loop->iteration }}</td>
-                    <td>{{ $vehicle->vehicle_name }}</td>
+                    <td>{{ $ad_placement->placement }}</td>
 
                     <td style="display: flex; gap: 5px">
-                        <a class="btn btn-primary btn-sm" href="{{ route('vehicles.edit', $vehicle->id) }}"><i
-                                class="fa fa-edit"></i> Edit</a>
-                        <form action="{{ route('vehicles.destroy', $vehicle->id) }}" method="POST" class="d-inline-block"
-                            role="delete">
+                        <a class="btn btn-primary btn-sm"
+                            href="{{ route('advertisement.placement.edit', $ad_placement->id) }}"><i class="fa fa-edit"></i>
+                            Edit</a>
+                        <form action="{{ route('advertisement.placement.destroy', $ad_placement->id) }}" method="POST"
+                            class="d-inline-block" role="delete">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Delete</button>
